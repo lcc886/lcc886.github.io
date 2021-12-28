@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="code" class="content">
+        <p>相遇、相识、相知、相伴</p>
+        <p>往后余生，请多指教</p>
+    </div>
+
+
+</body>
+
+
+<script>
+
+
+    var typewriter = function (e) {
+        console.log(e);
+        console.log( $(e));
+        console.log(e == $(e));
+        e.each(x=>console.log(x));
+        e.each(function () {
+            var $ele = $(e),
+                str = $ele.html(),
+                progress = 0;
+                console.log(str);
+
+            $ele.html('');
+            var timer = setInterval(function () {
+                var current = str.substr(progress, 1);
+                if (current == '<') {
+                    progress = str.indexOf('>', progress) + 1;
+                } else {
+                    progress++;
+                }
+                $ele.html(str.substring(0, progress) + (progress & 1 ? '_' : ''));
+                if (progress >= str.length) {
+                    clearInterval(timer);
+                }
+            }, 200);
+        });
+        return e;
+    };
+
+    //调用
+    typewriter($("#code"))
+</script>
+
+</html>
